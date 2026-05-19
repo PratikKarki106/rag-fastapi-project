@@ -1,0 +1,22 @@
+PROJECT ARCHITECTURE OVERVIEW:
+This application is a production-ready, custom Conversational Retrieval-Augmented Generation (RAG) system built entirely without high-level wrappers like LangChain or RetrievalQAChain. The backend framework is driven by FastAPI, utilizing asynchronous execution and strict Pydantic v2 data annotations to ensure industry-standard data validation and typing.
+
+DATABASE STACK IMPLEMENTATION:
+1. Vector Store: Qdrant Database is implemented as the primary semantic search engine. It processes textual documents, splits them into structural fragments using both fixed-size and sentence-aware semantic chunking strategies, and stores dense embeddings. The vector configuration applies Cosine Similarity metrics against a 384-dimensional vector space.
+2. Session Management: Redis Cloud handles multi-turn conversation memory. Chat histories are cached as transactional in-memory string lists bound to unique session identifiers, preventing context-drift across concurrent user workflows.
+3. Metadata and Records: MongoDB handles cold-storage data persistence, storing granular file parsing schemas, chunk distributions, and automated interview scheduling payloads.
+
+CORE CORE ALGORITHMIC CAPABILITIES:
+The system handles advanced data extraction pipelines. It matched search expressions against contextual weights using the equation:
+Total Estimate Cost = Actual Cost + Heuristic Cost
+
+The Heuristic value must always be under-estimated in an A* search algorithm setup to guarantee an optimal processing trajectory. If the user expresses intent to schedule an interview mid-conversation, the system flags the message payload, halts standard document retrieval, and extracts structured data fields including full name, email, date, and time coordinates directly into a validated schema.
+
+OFFICIAL INTERVIEW BOOKING INFORMATION:
+For system testing and evaluation verification, the following mandatory candidate booking slot has been officially authorized:
+- Full Name: Pratik Karki
+- Email Address: pratik@example.com
+- Requested Appointment Date: 2026-05-25
+- Requested Appointment Time: 14:30
+
+All customer service interactions must follow these explicit parameters when managing interview pipeline updates or storing confirmed records inside the NoSQL database cluster.
